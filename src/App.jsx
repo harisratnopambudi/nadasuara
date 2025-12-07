@@ -297,8 +297,8 @@ export default function App() {
         <div className="lg:col-span-8 space-y-6">
 
           {/* Voice Selector */}
-          <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-sm">
-            <h3 className="text-sm font-semibold text-slate-400 mb-4 flex items-center gap-2 uppercase tracking-wider">
+          <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+            <h3 className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-2 uppercase tracking-wider">
               <Sparkles size={14} className="text-indigo-500" /> Voice Character
             </h3>
 
@@ -332,13 +332,13 @@ export default function App() {
           </div>
 
           {/* Text Input Area */}
-          <div className="bg-slate-800 border border-slate-700 rounded-2xl p-1 shadow-sm hover:shadow-md transition-shadow relative group">
+          <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-1 shadow-sm hover:shadow-md transition-shadow relative group">
             {/* Toolbar Input */}
             <div className="absolute top-3 right-3 z-10 flex gap-2">
               <button
                 onClick={handleEnhanceText}
                 disabled={isEnhancing || !text.trim()}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-indigo-500 text-xs font-semibold hover:bg-slate-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-indigo-500 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 title="Enhance with AI"
               >
                 {isEnhancing ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />}
@@ -353,19 +353,19 @@ export default function App() {
               onChange={(e) => setText(e.target.value)}
               maxLength={500}
               placeholder="Enter your script here..."
-              className="w-full h-64 bg-slate-800 p-6 rounded-xl text-lg leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-slate-700 text-slate-50 placeholder-slate-600 pt-14 font-mono"
+              className="w-full h-64 bg-white dark:bg-slate-800 p-6 rounded-xl text-lg leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700 text-slate-900 dark:text-slate-50 placeholder-slate-400 dark:placeholder-slate-600 pt-14 font-mono transition-colors"
               spellCheck="false"
             />
 
-            <div className="absolute bottom-4 left-6 flex items-center gap-4 text-xs text-slate-400 font-medium">
+            <div className="absolute bottom-4 left-6 flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 font-medium">
               <div className="flex items-center gap-1.5">
                 <Info size={14} />
                 <span>Pro Tip: Use commas for natural pauses.</span>
               </div>
             </div>
             <div className={`absolute bottom-4 right-4 text-xs font-medium px-2 py-1 rounded border ${text.length >= 450
-              ? 'bg-red-900/20 text-red-400 border-red-900/50'
-              : 'bg-slate-900 text-slate-400 border-slate-700'
+              ? 'bg-red-50 text-red-500 border-red-200 dark:bg-red-900/20 dark:text-red-400 dark:border-red-900/50'
+              : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-700'
               }`}>
               {text.length} / 500
             </div>
@@ -405,10 +405,10 @@ export default function App() {
 
         {/* Kolom Kanan: History / Hasil */}
         <div className="lg:col-span-4">
-          <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6 h-full flex flex-col shadow-sm min-h-[500px]">
-            <div className="flex items-center gap-2 mb-6 pb-4 border-b border-slate-700">
-              <History className="text-slate-400" size={20} />
-              <h2 className="font-semibold text-white">Generation History</h2>
+          <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 h-full flex flex-col shadow-sm min-h-[500px]">
+            <div className="flex items-center gap-2 mb-6 pb-4 border-b border-slate-200 dark:border-slate-700">
+              <History className="text-slate-400 dark:text-slate-400" size={20} />
+              <h2 className="font-semibold text-slate-900 dark:text-white">Generation History</h2>
             </div>
 
             <div className="flex-1 overflow-y-auto space-y-4 pr-1 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
