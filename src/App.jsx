@@ -92,7 +92,7 @@ export default function App() {
         1. Tambahkan jeda napas dengan koma (,) atau titik tiga (...) di tempat yang pas.
         2. Berikan penekanan pada kata kunci.
         3. Gaya bahasa harus sesuai dengan karakter suara yang dipilih: "${selectedVoice.style}".
-        4. JANGAN melebihi 500 karakter.
+        4. JANGAN melebihi 1000 karakter.
         5. HANYA berikan hasil teksnya saja.
         
         Teks Asli: "${text}"
@@ -112,7 +112,7 @@ export default function App() {
       const enhancedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
       if (enhancedText) {
-        setText(enhancedText.trim().slice(0, 500));
+        setText(enhancedText.trim().slice(0, 1000));
       } else {
         throw new Error('Gagal memproses teks.');
       }
@@ -354,7 +354,7 @@ export default function App() {
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
-              maxLength={500}
+              maxLength={1000}
               placeholder="Enter your script here..."
               className="w-full h-64 bg-white dark:bg-slate-800 p-6 rounded-xl text-lg leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700 text-slate-900 dark:text-slate-50 placeholder-slate-400 dark:placeholder-slate-600 pt-14 font-mono transition-colors"
               spellCheck="false"
@@ -366,11 +366,11 @@ export default function App() {
                 <span>Pro Tip: Use commas for natural pauses.</span>
               </div>
             </div>
-            <div className={`absolute bottom-4 right-4 text-xs font-medium px-2 py-1 rounded border ${text.length >= 450
+            <div className={`absolute bottom-4 right-4 text-xs font-medium px-2 py-1 rounded border ${text.length >= 950
               ? 'bg-red-50 text-red-500 border-red-200 dark:bg-red-900/20 dark:text-red-400 dark:border-red-900/50'
               : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-700'
               }`}>
-              {text.length} / 500
+              {text.length} / 1000
             </div>
           </div>
 
