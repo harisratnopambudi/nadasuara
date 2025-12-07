@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mic, History, Loader2, Wand2, Sparkles, Info, Megaphone, Lock, ArrowRight, KeyRound } from 'lucide-react';
+import { Mic, History, Loader2, Wand2, Sparkles, Info, Megaphone, Lock, ArrowRight, KeyRound, Sun, Moon } from 'lucide-react';
 
 import VoiceButton from './components/VoiceButton';
 import AudioCard from './components/AudioCard';
@@ -33,6 +33,22 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passkeyInput, setPasskeyInput] = useState('');
   const [authError, setAuthError] = useState('');
+
+  // State Theme
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+
+  React.useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
 
   // State Aplikasi Utama
   const [text, setText] = useState('Dapatkan promo spesial hari ini! Diskon 50% untuk semua produk. Jangan sampai kehabisan, beli sekarang juga!');
@@ -176,33 +192,33 @@ export default function App() {
   // --- TAMPILAN LOGIN ---
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-4 font-sans selection:bg-indigo-500 selection:text-white">
-        <div className="w-full max-w-md bg-slate-800 rounded-2xl shadow-2xl shadow-black/50 p-8 border border-slate-700">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col items-center justify-center p-4 font-sans selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+        <div className="w-full max-w-md bg-white dark:bg-slate-800 rounded-2xl shadow-2xl shadow-slate-200 dark:shadow-black/50 p-8 border border-slate-200 dark:border-slate-700 transition-colors duration-300">
           <div className="flex flex-col items-center mb-8">
             <div className="bg-indigo-500 p-3 rounded-xl text-white shadow-lg shadow-indigo-500/30 mb-4 animate-pulse-slow">
               <Megaphone size={32} />
             </div>
-            <h1 className="text-3xl font-bold text-white tracking-tight text-center">
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight text-center">
               Nada<span className="text-indigo-500">Suara</span>
             </h1>
-            <p className="text-sm text-slate-400 font-medium tracking-wide uppercase mt-2">Professional AI Voiceover</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium tracking-wide uppercase mt-2">Professional AI Voiceover</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
-              <label htmlFor="passkey" className="block text-sm font-semibold text-slate-400 ml-1">
+              <label htmlFor="passkey" className="block text-sm font-semibold text-slate-500 dark:text-slate-400 ml-1">
                 Access Passkey
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <KeyRound className="h-5 w-5 text-slate-600" />
+                  <KeyRound className="h-5 w-5 text-slate-400 dark:text-slate-500" />
                 </div>
                 <input
                   type="password"
                   id="passkey"
                   value={passkeyInput}
                   onChange={(e) => setPasskeyInput(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-3 border border-slate-700 rounded-xl leading-5 bg-slate-900 text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all sm:text-sm"
+                  className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl leading-5 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all sm:text-sm"
                   placeholder="••••••••••••"
                   autoFocus
                 />
@@ -236,29 +252,37 @@ export default function App() {
 
   // --- TAMPILAN UTAMA (SETELAH LOGIN) ---
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-50 font-sans selection:bg-indigo-500 selection:text-white flex flex-col">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans selection:bg-indigo-500 selection:text-white flex flex-col transition-colors duration-300">
       {/* Header */}
-      <header className="border-b border-slate-700 bg-slate-800/80 backdrop-blur-md sticky top-0 z-10 shadow-lg shadow-black/20">
+      <header className="border-b border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md sticky top-0 z-10 shadow-sm dark:shadow-lg dark:shadow-black/20 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-indigo-500 p-2 rounded-lg text-white shadow-md shadow-indigo-500/20">
               <Megaphone size={20} />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white tracking-tight">
+              <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
                 Nada<span className="text-indigo-500">Suara</span>
               </h1>
-              <p className="text-[10px] text-slate-400 font-medium tracking-wider uppercase">Pro Edition</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium tracking-wider uppercase">Pro Edition</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="hidden sm:flex items-center gap-2 text-xs font-semibold px-4 py-1.5 rounded-full bg-slate-900 text-slate-400 border border-slate-700">
+            <div className="hidden sm:flex items-center gap-2 text-xs font-semibold px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 transition-colors">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
               System Online
             </div>
+
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
             <button
               onClick={() => setIsAuthenticated(false)}
-              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors"
+              className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
               title="Logout"
             >
               <Lock size={18} />
