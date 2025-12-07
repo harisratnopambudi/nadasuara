@@ -6,6 +6,8 @@ import AudioCard from './components/AudioCard';
 import { pcmToWav } from './utils/audioUtils';
 import { VOICES } from './data/voices';
 
+import { PASSKEYS } from './data/passkeys';
+
 // --- FUNGSI FETCH DENGAN RETRY ---
 const fetchWithRetry = async (url, options, retries = 5, delay = 1000) => {
   try {
@@ -63,7 +65,8 @@ export default function App() {
   // --- LOGIC AUTHENTIKASI ---
   const handleLogin = (e) => {
     e.preventDefault();
-    if (passkeyInput === import.meta.env.VITE_APP_PASSKEY) {
+    // Cek apakah input ada di daftar PASSKEYS atau match dengan master key di .env (opsional backup)
+    if (PASSKEYS.includes(passkeyInput) || passkeyInput === import.meta.env.VITE_APP_PASSKEY) {
       setIsAuthenticated(true);
       setAuthError('');
     } else {
