@@ -226,7 +226,7 @@ export default function App() {
 
           <div className="mt-8 text-center">
             <p className="text-xs text-slate-600">
-              Protected Environment. Authorized Personnel Only.
+              For buying passkey ke link <a href="https://lynk.id/harisratnopambudi/r0v9x81909g3" target="_blank" rel="noopener noreferrer" className="text-indigo-500 hover:text-indigo-400 transition-colors">https://lynk.id/harisratnopambudi/r0v9x81909g3</a>
             </p>
           </div>
         </div>
