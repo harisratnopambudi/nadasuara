@@ -53,7 +53,7 @@ export default function App() {
   };
 
   // State Aplikasi Utama
-  const [text, setText] = useState('Dapatkan promo spesial hari ini! Diskon 50% untuk semua produk. Jangan sampai kehabisan, beli sekarang juga!');
+  const [text, setText] = useState('Dapatkan promo spesial hari ini dari NadaSuara! Nikmati diskon 50% untuk semua paket voice over AI kami. Buat audio profesional, jelas, dan enak didengar untuk video, podcast, iklan, atau presentasi Anda. Jangan sampai ketinggalan—hidupkan kata-kata Anda sekarang juga dengan NadaSuara!');
   const [selectedVoice, setSelectedVoice] = useState(VOICES[2]); // Default Andi (Marketing)
   const [isLoading, setIsLoading] = useState(false);
   const [isEnhancing, setIsEnhancing] = useState(false);
